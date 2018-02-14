@@ -1,6 +1,7 @@
 package com.pace.cs639spring.hw2;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -11,13 +12,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -47,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     boolean[] status = {false, false, false, false, false, false, false, false, false, false};
     int[] colors={android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black};
     ArrayList<ArrayList<String>> factsArrayList = new ArrayList<ArrayList<String>>();
+    private Button addButton;
+    private Button editButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         thirdButton = findViewById( R.id.thirdbutton );
         fourthButton = findViewById( R.id.fourthbutton );
         fifthButton = findViewById( R.id.fifthbutton );
-
+        addButton = findViewById( R.id.addFact );
+        editButton = findViewById( R.id.editButton );
         initializeAllData();
 
         final AnimalAdapter adapter = new AnimalAdapter( this, animalTitles, images, status,colors,factsArrayList);
@@ -117,6 +125,70 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        addButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // custom dialog
+                final Dialog dialog = new Dialog(MainActivity.this);
+
+                dialog.setContentView(R.layout.custom_dialog);
+                dialog.setTitle("Add Fact");
+
+                DisplayMetrics metrics = getResources().getDisplayMetrics();
+                int screenWidth = (int) (metrics.widthPixels * 0.80);
+
+                final EditText factEditText = dialog.findViewById( R.id.factEditText );
+                Button addFactButton = dialog.findViewById( R.id.addFactButton );
+                addFactButton.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String fact = factEditText.getText().toString().trim();
+                        if(!TextUtils.isEmpty( fact )){
+                            adapter.addFactToList(fact,currentAnimal);
+                            dialog.dismiss();
+                        }
+                    }
+                } );
+
+                dialog.show();
+                Window window = dialog.getWindow();
+                window.setLayout( screenWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
+            }
+        } );
+        
+        editButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // custom dialog
+                final Dialog dialog = new Dialog(MainActivity.this);
+
+                dialog.setContentView(R.layout.custom_dialog);
+
+                DisplayMetrics metrics = getResources().getDisplayMetrics();
+                int screenWidth = (int) (metrics.widthPixels * 0.80);
+
+                final EditText factEditText = dialog.findViewById( R.id.factEditText );
+                Button addFactButton = dialog.findViewById( R.id.addFactButton );
+
+                String fact = adapter.getFactAt(currentAnimal);
+                factEditText.setText( fact );
+
+                addFactButton.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String fact = factEditText.getText().toString().trim();
+                        if(!TextUtils.isEmpty( fact )){
+                            adapter.updateFactToList(fact,currentAnimal);
+                            dialog.dismiss();
+                        }
+                    }
+                } );
+
+                dialog.show();
+                Window window = dialog.getWindow();
+                window.setLayout( screenWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
+            }
+        } );
     }
 
     private void initializeAllData() {
@@ -161,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
             animalFacts = row.findViewById( R.id.animalFacts );
             nextButton=row.findViewById( R.id.nextButton );
             deleteButton=row.findViewById( R.id.deleteButton );
-
             myImage.setImageResource( images[position] );
             myTitle.setText( titleArray[position] );
 
@@ -246,5 +317,23 @@ public class MainActivity extends AppCompatActivity {
             notifyDataSetChanged();
         }
 
+        public void addFactToList(String fact, int currentAnimal) {
+            ArrayList<String> factArrayList = factsArrayList.get( currentAnimal );
+            factArrayList.add( fact );
+            factsArrayList.set( currentAnimal,factArrayList );
+            notifyDataSetChanged();
+        }
+
+        public String getFactAt(int currentAnimal) {
+            return factsArrayList.get( currentAnimal ).get( factIndex[currentAnimal] );
+        }
+
+        public void updateFactToList(String fact, int currentAnimal) {
+            ArrayList<String> factArrayList = factsArrayList.get( currentAnimal );
+            Log.e( "Update",factIndex[currentAnimal]+"="+currentAnimal );
+            factArrayList.set( factIndex[currentAnimal],fact );
+            factsArrayList.set( currentAnimal,factArrayList );
+            notifyDataSetChanged();
+        }
     }
 }

@@ -36,6 +36,7 @@
         />
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/colorPicker"
         android:layout_width="match_parent"
