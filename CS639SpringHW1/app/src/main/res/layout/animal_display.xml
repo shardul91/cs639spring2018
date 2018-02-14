@@ -1,128 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<!-- Two linear layouts inside the outer RelativeLayout makes the placement of the inner layouts simple irrespective of the screen size or dimensions-->
+
+<RelativeLayout
+    android:id="@+id/ParentID"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="5dp">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/AnimalsLayout"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3.0"
+        >
 
         <ImageView
             android:id="@+id/bird"
+            android:layout_alignParentStart="true"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
             android:src="@drawable/bird"
-            android:layout_centerVertical="true"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"/>
-
-        <TextView
-            android:id="@+id/bird_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/bird"
-            android:text="@string/bird_description"
-            android:visibility="invisible"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="5dp">
+             />
 
         <ImageView
             android:id="@+id/cat"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/bird"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/cat"
-            android:layout_centerVertical="true"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"/>
-
-        <TextView
-            android:id="@+id/cat_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/cat"
-            android:text="@string/cat_description"
-            android:visibility="invisible"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="5dp">
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:src="@drawable/cat"/>
 
         <ImageView
             android:id="@+id/dog"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/cat"
+            android:layout_height="0dp"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_weight="0.9"
             android:src="@drawable/dog"
-            android:layout_centerVertical="true"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"/>
-
-        <TextView
-            android:id="@+id/dog_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/dog"
-            android:text="@string/dog_description"
-            android:visibility="invisible"/>
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
-
-        <View
-            android:id="@+id/red"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="#f00"
-            android:layout_marginEnd="3dp"/>
-        <View
-            android:id="@+id/orange"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="#FF7F24"
-            android:layout_marginEnd="3dp"/>
-        <View
-            android:id="@+id/green"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="#0f0"
-            android:layout_marginEnd="3dp"/>
-        <View
-            android:id="@+id/blue"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="#00f"
-            android:layout_marginEnd="3dp"/>
-        <View
-            android:id="@+id/yellow"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@color/yellow"
-            android:layout_marginEnd="3dp"/>
-
-
+            />
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/AnimalsInfoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/AnimalsLayout"
+        android:weightSum="3.0"
+        >
+        <TextView
+            android:id="@+id/birdInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="The chicken is the closest living relative to the Tyrannosaurus Rex"
+            android:layout_weight="0.9"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:id="@+id/catInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@id/cat"
+            android:text="Cats can change their meow to manipulate a human. They often imitate a human baby when they need food."
+            android:layout_weight="0.9"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:id="@+id/dogInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@id/dog"
+            android:text="In a study done by scholars at the University of California, it was found that dogs can get jealous if they see their humans displaying affection toward something or someone else."
+            android:layout_weight="0.9"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/colorPicker"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignBottom="@id/AnimalsLayout"
+        >
+        <Button
+            android:id="@+id/firstbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_dark"
+            />
+        <Button
+            android:id="@+id/secondbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            />
+        <Button
+            android:id="@+id/thirdbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_green_dark"
+        />
+
+        <Button
+            android:id="@+id/fourthbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            />
+
+        <Button
+            android:id="@+id/fifthbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            />
+
+    </LinearLayout>
+</RelativeLayout>
+
+
