@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">CS639SpringHW2</string>
+    <string-array name="titles">
+        <item>Bird</item>
+        <item>Cat</item>
+        <item>Dog</item>
+        <item>Ant</item>
+        <item>Pig</item>
+        <item>Fish</item>
+        <item>Sheep</item>
+        <item>Seahorse</item>
+        <item>Snail</item>
+    </string-array>
 </resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/animalsImages"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@drawable/bird"
+        />
+
+    <TextView
+        android:id="@+id/animalsNames"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:textSize="25sp"
+        android:text="BIRD"
+        android:layout_toRightOf="@+id/animalsImages"
+
+        />
+
+
+    <TextView
+        android:id="@+id/animalFacts"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="4"
+        android:gravity="right"
+        android:text="FACT FACT FACT"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/animalsNames"
+        />
+<LinearLayout
+    android:id="@+id/ButtonLayout"
+    android:visibility="invisible"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/animalFacts"
+    android:layout_alignRight="@+id/animalFacts"
+
+    >
+    <Button
+        android:id="@+id/nextButton"
+        android:text="Next"
+        android:textSize="20px"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:layout_toRightOf="@+id/animalsImages"
+        android:layout_below="@+id/animalFacts"
+        />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:text="Delete"
+        android:textSize="20px"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:layout_below="@+id/animalsImages"
+        android:layout_toRightOf="@+id/nextButton"
+        />
+</LinearLayout>
+</RelativeLayout>

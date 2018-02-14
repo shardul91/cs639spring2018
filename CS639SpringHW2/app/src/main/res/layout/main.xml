@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView"
+        android:layout_above="@+id/bottomButtons"
+        >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomButtons"
+        android:layout_above="@+id/colorPicker"
+        android:layout_centerInParent="true"
+        >
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editButton"
+        android:text="Edit"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addFact"
+        android:text="Add Fact"
+        android:layout_toRightOf="@+id/editButton"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/colorPicker"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:id="@+id/firstbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_dark"
+            />
+        <Button
+            android:id="@+id/secondbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            />
+        <Button
+            android:id="@+id/thirdbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_green_dark"
+            />
+
+        <Button
+            android:id="@+id/fourthbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            />
+
+        <Button
+            android:id="@+id/fifthbutton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
