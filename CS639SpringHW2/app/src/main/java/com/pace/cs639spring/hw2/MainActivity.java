@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Button deleteButton;
     int currentAnimal = 0;
 
-    int[] images = {R.drawable.bird, R.drawable.cat, R.drawable.dog, R.drawable.ic_icons8_ant_96, R.drawable.ic_icons8_windows_8_astrology_year_of_pig, R.drawable.ic_icons8_fish_96, R.drawable.ic_icons8_lamb_96, R.drawable.ic_icons8_seahorse_96, R.drawable.ic_icons8_snail_96, R.drawable.ic_icons8_whale_96};
+    int[] images = {R.drawable.bird, R.drawable.cat, R.drawable.dog, R.drawable.ic_icons8_ant_96, R.drawable.ic_icons8_pig_96, R.drawable.ic_icons8_fish_96, R.drawable.ic_icons8_lamb_96, R.drawable.ic_icons8_seahorse_96, R.drawable.ic_icons8_snail_96, R.drawable.ic_icons8_whale_96};
     boolean[] status = {false, false, false, false, false, false, false, false, false, false};
     int[] colors={android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black,android.R.color.black};
     ArrayList<ArrayList<String>> factsArrayList = new ArrayList<ArrayList<String>>();
